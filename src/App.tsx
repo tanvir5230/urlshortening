@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { UrlEdit } from './pages/UrlEdit/UrlEdit';
 import UrlEntry from './pages/UrlEntry/UrlEntry';
 import UrlList from './pages/UrlList/UrlList';
+import Navbar from './components/Navbar/Navbar';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('entry');
@@ -18,11 +19,7 @@ const App = () => {
 
   return (
     <div>
-      <nav>
-        <button onClick={() => setCurrentPage('entry')}>Entry</button>
-        <button onClick={() => setCurrentPage('list')}>List</button>
-        <button onClick={() => setCurrentPage('edit')}>Edit</button>
-      </nav>
+      <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage}/>
       {renderPage()}
     </div>
   );
