@@ -9,13 +9,15 @@ interface NavbarProps {
   setCurrentPage: Dispatch<SetStateAction<string>>;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ currentPage, setCurrentPage }) => {
+const SmallScreenNavbar: React.FC<NavbarProps> = ({
+  currentPage,
+  setCurrentPage,
+}) => {
   return (
     <nav
       style={{
+        width: "100%",
         border: "2px solid #ccc",
-        minWidth: "200px",
-        maxWidth: "200px",
         borderRadius: "10px",
         padding: "10px",
       }}
@@ -38,4 +40,4 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, setCurrentPage }) => {
   );
 };
 
-export default Navbar;
+export default SmallScreenNavbar;
