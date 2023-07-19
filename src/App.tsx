@@ -1,10 +1,30 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
+import React, { useState } from 'react';
+import { UrlEdit } from './pages/UrlEdit/UrlEdit';
+import UrlEntry from './pages/UrlEntry/UrlEntry';
+import UrlList from './pages/UrlList/UrlList';
 
-export default function App() {
+const App = () => {
+  const [currentPage, setCurrentPage] = useState('entry');
+
+  const renderPage = () => {
+    if (currentPage === 'entry') {
+      return <UrlEntry/>;
+    } else if (currentPage === 'list') {
+      return <UrlList />;
+    } else if (currentPage === 'edit') {
+      return <UrlEdit />;
+    }
+  };
+
   return (
     <div>
-      <Button variant="contained">Hello World</Button>
+      <nav>
+        <button onClick={() => setCurrentPage('entry')}>Entry</button>
+        <button onClick={() => setCurrentPage('list')}>List</button>
+        <button onClick={() => setCurrentPage('edit')}>Edit</button>
+      </nav>
+      {renderPage()}
     </div>
   );
-}
+};
+export default App;
