@@ -8,14 +8,14 @@ import Logo from "./components/Logo";
 // Import CSS
 import "./App.css";
 import useScreenType from "./utils/useScreenType";
-import SmallScreenNavbar from "./components/Navbar/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState("entry");
   const screenType: string = useScreenType();
 
   const renderPage = () => {
-    if (currentPage === "entry") {
+    if (currentPage === "enter") {
       return <UrlEntry />;
     } else if (currentPage === "list") {
       return <UrlList />;
@@ -28,7 +28,7 @@ const App = () => {
     <Grid container className="App">
       <Grid
         container
-        // width={1350}
+        item
         height={800}
         xs={12}
         lg={10}
@@ -36,14 +36,31 @@ const App = () => {
         bgcolor="#404040"
         borderRadius={"30px"}
       >
-        <Grid className="logo-container" xs={12}>
+        <Grid className="logo-container" item xs={12}>
           <Logo width={200} height={150} />
         </Grid>
-        <Grid container xs={12} className="main-content">
-          <Grid xs={12} lg={11} height={"100%"} bgcolor={"blue"}></Grid>
-          <Grid xs={12} lg={1} height={"100%"} bgcolor={"red"}>
-            <SmallScreenNavbar
+        <Grid
+          container
+          item
+          xs={12}
+          className="main-content"
+          paddingX={4}
+          style={{ overflowY: "auto" }}
+        >
+          <Grid item xs={12} lg={11} height={"100%"}>
+            {renderPage()}
+          </Grid>
+          <Grid
+            container
+            item
+            xs={12}
+            lg={1}
+            flexDirection={"column"}
+            justifyContent={"center"}
+          >
+            <Navbar
               currentPage={currentPage}
+              size="large"
               setCurrentPage={setCurrentPage}
             />
           </Grid>
