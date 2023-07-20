@@ -29,7 +29,6 @@ const App = () => {
       <Grid
         container
         item
-        height={800}
         xs={12}
         lg={10}
         xl={8}
@@ -47,7 +46,14 @@ const App = () => {
           paddingX={4}
           style={{ overflowY: "auto" }}
         >
-          <Grid item xs={12} lg={11} height={"100%"}>
+          <Grid
+            container
+            item
+            xs={12}
+            lg={11}
+            height={"100%"}
+            alignContent={"center"}
+          >
             {renderPage()}
           </Grid>
           <Grid

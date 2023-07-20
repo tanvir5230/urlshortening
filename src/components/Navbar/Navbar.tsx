@@ -32,7 +32,7 @@ const Navbar: React.FC<NavbarProps> = ({
               border: "2px solid #fff",
               borderRadius: "30px",
               backgroundColor: "transparent",
-              height: "50%",
+              height: "100%",
               padding: "10px",
               display: "flex",
               flexDirection: "column",
