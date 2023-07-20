@@ -11,7 +11,7 @@ import useScreenType from "./utils/useScreenType";
 import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState("entry");
+  const [currentPage, setCurrentPage] = useState("enter");
   const screenType: string = useScreenType();
 
   const renderPage = () => {
