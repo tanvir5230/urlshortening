@@ -11,12 +11,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateY(-75px);
+  transform: translateY(-125px);
   height: 150px;
-}
-
-.main-content {
-  width: 100%;
-  height: 90%;
-  transform: translateY(-75px);
 }

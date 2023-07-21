@@ -10,41 +10,48 @@ interface NavbarProps {
   setCurrentPage: Dispatch<SetStateAction<string>>;
 }
 
+interface NavObject {
+  label: string;
+  icon: ReactElement;
+}
+
 const Navbar: React.FC<NavbarProps> = ({
   currentPage,
   size,
   setCurrentPage,
 }) => {
-  interface NavObject {
-    label: string;
-    icon: ReactElement;
-  }
   const navList: NavObject[] = [
     { label: "Edit", icon: <ModeEditOutlinedIcon /> },
     { label: "Enter", icon: <AddCircleOutlinedIcon /> },
     { label: "List", icon: <ChecklistOutlinedIcon /> },
   ];
+
   return (
     <BottomNavigation
       style={
-        size === "large"
+        size !== "small"
           ? {
               border: "2px solid #fff",
               borderRadius: "30px",
               backgroundColor: "transparent",
+              width: "80px",
               height: "100%",
               padding: "10px",
               display: "flex",
               flexDirection: "column",
             }
           : {
-              border: "2px solid #fff",
-              borderRadius: "30px",
+              borderTop: "2px solid #fff",
+              borderTopLeftRadius: "30px",
+              borderTopRightRadius: "30px",
               backgroundColor: "black",
-              width: "100%",
               padding: "10px",
               display: "flex",
               flexDirection: "row",
+              position: "fixed",
+              bottom: 0,
+              left: 0,
+              right: 0,
             }
       }
       showLabels
