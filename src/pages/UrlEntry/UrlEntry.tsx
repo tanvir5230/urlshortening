@@ -6,7 +6,7 @@ import ShowTextWithColor from "./ShowTextWithColor";
 import EntryButton from "./EntryButton";
 import generateShortUrl from "../../utils/generateShortUrl";
 import { IconButton } from "@mui/material";
-import { DataContext } from "../../App";
+import { DataContext, UrlData } from "../../App";
 
 const SHORT_URL_DEFAULT: string = "No generation yet.";
 
@@ -23,9 +23,7 @@ const UrlEntry: React.FC<UrlEntryProps> = ({ screenType }) => {
   const inputUrlRef = React.useRef<HTMLInputElement>(null);
 
   const handleValidateLongUrl = (url: string): boolean => {
-    let isValid = false;
-    isValid = url.length > 5 ? true : false;
-    return isValid;
+    return url.length > 5;
   };
 
   const handleGenerate = (url: string) => {
@@ -44,20 +42,23 @@ const UrlEntry: React.FC<UrlEntryProps> = ({ screenType }) => {
     setSaved(false);
   };
 
-  const handleSave = (data: object, storedData: Array<object>) => {
+  const handleSave = (
+    data: { shortUrl: string; longUrl: string },
+    storedData: UrlData[]
+  ) => {
     try {
       const newData = {
-        id: storedData !== null ? storedData.length + 1 : 1,
+        id: storedData ? storedData.length + 1 : 1,
         ...data,
-        created_at: new Date(),
+        created_at: new Date().toISOString(), // Convert date to ISO string
       };
-      storedData && storedData.push(newData);
-      localStorage.setItem("savedUrls", JSON.stringify(storedData));
+      const updatedData = storedData ? [...storedData, newData] : [newData];
+      localStorage.setItem("savedUrls", JSON.stringify(updatedData));
       setSaved(true);
-      setUrls(storedData);
+      setUrls(updatedData);
     } catch (e) {
       alert(
-        "your local storage is not working. Couldn't perfrom the save operation."
+        "Your local storage is not working. Couldn't perform the save operation."
       );
     }
   };

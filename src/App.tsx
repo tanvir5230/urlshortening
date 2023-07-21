@@ -2,17 +2,24 @@ import React, { createContext, useEffect, useState } from "react";
 import { UrlEdit } from "./pages/UrlEdit/UrlEdit";
 import UrlEntry from "./pages/UrlEntry/UrlEntry";
 import UrlList from "./pages/UrlList/UrlList";
-
 import Grid from "@mui/material/Grid";
 import Logo from "./components/Logo";
-// Import CSS
-import "./App.css";
 import useScreenType from "./utils/useScreenType";
 import Navbar from "./components/Navbar/Navbar";
 
+// Import CSS
+import "./App.css";
+
+export interface UrlData {
+  id: number;
+  shortUrl: string;
+  longUrl: string;
+  created_at: string;
+}
+
 export type GlobalData = {
-  urls: Array<object>;
-  setUrls: React.Dispatch<React.SetStateAction<Array<object>>>;
+  urls: UrlData[];
+  setUrls: React.Dispatch<React.SetStateAction<UrlData[]>>;
 };
 
 export const DataContext = createContext<GlobalData>({
@@ -21,24 +28,27 @@ export const DataContext = createContext<GlobalData>({
 });
 
 const App = () => {
-  const [urls, setUrls] = useState<Array<object>>([]);
+  const [urls, setUrls] = useState<UrlData[]>([]); // Specify the correct type UrlData[]
   const [currentPage, setCurrentPage] = useState<string>("enter");
   const screenType: string = useScreenType();
 
-  const renderPage = (screenType: string) => {
+  // Specify the return type as JSX.Element
+  const renderPage = (screenType: string): JSX.Element => {
     if (currentPage === "enter") {
       return <UrlEntry screenType={screenType} />;
     } else if (currentPage === "list") {
       return <UrlList />;
     } else if (currentPage === "edit") {
       return <UrlEdit />;
+    } else {
+      return <div>Unknown page</div>;
     }
   };
 
   useEffect(() => {
     try {
       const storedDataJson: string | null = localStorage.getItem("savedUrls");
-      let storedData: Array<object> = [];
+      let storedData: UrlData[] = [];
       if (storedDataJson !== null) {
         storedData = JSON.parse(storedDataJson);
         setUrls(storedData);
