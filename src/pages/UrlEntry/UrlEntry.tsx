@@ -50,7 +50,7 @@ const UrlEntry: React.FC<UrlEntryProps> = ({ screenType }) => {
       const newData = {
         id: storedData ? storedData.length + 1 : 1,
         ...data,
-        created_at: new Date().toISOString(), // Convert date to ISO string
+        created_at: new Date().toISOString(),
       };
       const updatedData = storedData ? [...storedData, newData] : [newData];
       localStorage.setItem("savedUrls", JSON.stringify(updatedData));

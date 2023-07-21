@@ -72,7 +72,7 @@ const UrlEdit: React.FC = () => {
         if (urlItem) {
           urlItem.classList.remove("shaking");
         }
-      }, 1000); // Adjust the animation duration + delay time as needed
+      }, 1000);
     }
   };
 

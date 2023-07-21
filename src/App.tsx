@@ -28,11 +28,10 @@ export const DataContext = createContext<GlobalData>({
 });
 
 const App = () => {
-  const [urls, setUrls] = useState<UrlData[]>([]); // Specify the correct type UrlData[]
+  const [urls, setUrls] = useState<UrlData[]>([]);
   const [currentPage, setCurrentPage] = useState<string>("enter");
   const screenType: string = useScreenType();
 
-  // Specify the return type as JSX.Element
   const renderPage = (screenType: string): JSX.Element => {
     if (currentPage === "enter") {
       return <UrlEntry screenType={screenType} />;
