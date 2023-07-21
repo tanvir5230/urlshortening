@@ -76,7 +76,7 @@ const App = () => {
                 width: "100%",
               }}
             >
-              <Logo width={150} height={120} />
+              <Logo width={130} height={100} />
             </div>
           )}
           <Grid
