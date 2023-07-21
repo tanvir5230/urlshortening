@@ -108,7 +108,7 @@ const App = () => {
               lg={11}
               alignContent={"start"}
               height={"100%"}
-              maxHeight={"500px"}
+              maxHeight={"600px"}
               minHeight={"200px"}
               overflow={"hidden auto"}
             >

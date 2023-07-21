@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 
 export default function UrlList() {
-  const { urls, setUrls } = useContext(DataContext);
+  const { urls } = useContext(DataContext);
 
   // Pagination state
   const [page, setPage] = useState(1);

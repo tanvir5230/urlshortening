@@ -9,6 +9,7 @@ import generateShortUrl from "../../utils/generateShortUrl";
 const UrlEdit: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUrlData, setSelectedUrlData] = useState<UrlData | null>(null);
+  const [urlsBeingDeleted, setUrlsBeingDeleted] = useState<number[]>([]);
   const { urls, setUrls } = useContext(DataContext);
   const inputUrlRef = React.useRef<HTMLInputElement>(null);
 
@@ -55,13 +56,23 @@ const UrlEdit: React.FC = () => {
   };
 
   const handleDelete = (urlData: UrlData) => {
-    setSelectedUrlData(urlData);
-    if (selectedUrlData) {
-      const updatedData = urls.filter((data) => data.id !== selectedUrlData.id);
-      console.log(updatedData);
-      setUrls(updatedData);
-      localStorage.setItem("savedUrls", JSON.stringify(updatedData));
-      setSelectedUrlData(null);
+    const itemIndex = urls.findIndex((data) => data.id === urlData.id);
+    if (itemIndex !== -1) {
+      const urlItem = document.getElementById(`url-item-${urlData.id}`);
+      if (urlItem) {
+        urlItem.classList.add("shaking");
+      }
+
+      setTimeout(() => {
+        const updatedData = urls.filter((data) => data.id !== urlData.id);
+        setUrls(updatedData);
+        localStorage.setItem("savedUrls", JSON.stringify(updatedData));
+      }, 500);
+      setTimeout(() => {
+        if (urlItem) {
+          urlItem.classList.remove("shaking");
+        }
+      }, 1000); // Adjust the animation duration + delay time as needed
     }
   };
 
@@ -85,6 +96,8 @@ const UrlEdit: React.FC = () => {
             alignItems="center"
             justifyContent="space-between"
             key={urlData.id}
+            id={`url-item-${urlData.id}`}
+            className={urlsBeingDeleted.includes(urlData.id) ? "shaking" : ""}
             sx={{
               width: "100%",
               padding: "10px 20px",
