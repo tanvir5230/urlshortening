@@ -107,8 +107,8 @@ const App = () => {
               lg={11}
               alignContent={"start"}
               height={"100%"}
-              maxHeight={"600px"}
-              minHeight={"200px"}
+              maxHeight={screenType !== "small" ? "450px" : "500px"}
+              minHeight={"410px"}
               overflow={"hidden auto"}
             >
               {renderPage(screenType)}
