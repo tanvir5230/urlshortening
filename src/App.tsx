@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { UrlEdit } from "./pages/UrlEdit/UrlEdit";
+import UrlEdit from "./pages/UrlEdit/UrlEdit";
 import UrlEntry from "./pages/UrlEntry/UrlEntry";
 import UrlList from "./pages/UrlList/UrlList";
 import Grid from "@mui/material/Grid";
@@ -106,8 +106,11 @@ const App = () => {
               item
               xs={12}
               lg={11}
-              height={"100%"}
               alignContent={"start"}
+              height={"100%"}
+              maxHeight={"500px"}
+              minHeight={"200px"}
+              overflow={"hidden auto"}
             >
               {renderPage(screenType)}
             </Grid>

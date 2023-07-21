@@ -55,26 +55,41 @@ export default function UrlList() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {urls.slice(startIndex, endIndex).map((urlData) => {
-              return (
-                <TableRow key={urlData.id}>
-                  <TableCell>{urlData.id}</TableCell>
-                  <TableCell>
-                    <Link
-                      href={urlData.shortUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => handleOpenLongUrl(urlData.longUrl)}
-                    >
-                      {urlData.shortUrl}
-                    </Link>
-                  </TableCell>
-                  <TableCell>
-                    {new Date(urlData.created_at).toISOString().split("T")[0]}
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+            {urls.length === 0 && (
+              <TableRow>
+                <TableCell
+                  colSpan={3}
+                  style={{
+                    color: "red",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  No URL is saved in the database.
+                </TableCell>
+              </TableRow>
+            )}
+            {urls.length > 0 &&
+              urls.slice(startIndex, endIndex).map((urlData) => {
+                return (
+                  <TableRow key={urlData.id}>
+                    <TableCell>{urlData.id}</TableCell>
+                    <TableCell>
+                      <Link
+                        href={urlData.shortUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => handleOpenLongUrl(urlData.longUrl)}
+                      >
+                        {urlData.shortUrl}
+                      </Link>
+                    </TableCell>
+                    <TableCell>
+                      {new Date(urlData.created_at).toISOString().split("T")[0]}
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
           </TableBody>
         </Table>
       </TableContainer>

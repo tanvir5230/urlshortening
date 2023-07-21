@@ -69,7 +69,7 @@ const UrlEntry: React.FC<UrlEntryProps> = ({ screenType }) => {
         item
         xs={12}
         paddingRight={screenType !== "small" ? "5px" : 0}
-        paddingX={screenType !== "small" ? "0px" : "5px"}
+        paddingX={screenType !== "small" ? "0px" : "10px"}
         alignItems={"start"}
       >
         <TextField
@@ -111,7 +111,7 @@ const UrlEntry: React.FC<UrlEntryProps> = ({ screenType }) => {
         item
         xs={12}
         paddingRight={screenType !== "small" ? "5px" : 0}
-        paddingX={screenType !== "small" ? "0px" : "5px"}
+        paddingX={screenType !== "small" ? "0px" : "10px"}
         marginY={5}
       >
         <MyDivider />
@@ -120,7 +120,7 @@ const UrlEntry: React.FC<UrlEntryProps> = ({ screenType }) => {
         item
         xs={12}
         paddingRight={screenType !== "small" ? "5px" : 0}
-        paddingX={screenType !== "small" ? "0px" : "5px"}
+        paddingX={screenType !== "small" ? "0px" : "10px"}
         fontWeight={"bold"}
       >
         <ShowTextWithColor
@@ -135,7 +135,7 @@ const UrlEntry: React.FC<UrlEntryProps> = ({ screenType }) => {
         item
         xs={12}
         paddingRight={screenType !== "small" ? "5px" : 0}
-        paddingX={screenType !== "small" ? "0px" : "5px"}
+        paddingX={screenType !== "small" ? "0px" : "10px"}
         spacing={1}
         marginTop={4}
       >
